@@ -1,0 +1,35 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def selenideVersion = "5.23.0",
+    junitVersion = "5.7.1"
+
+dependencies {
+    testImplementation (
+            "com.codeborne:selenide:$selenideVersion",
+            "com.codeborne:pdf-test:1.6.1",
+            "com.codeborne:xls-test:1.4.3",
+            "net.lingala.zip4j:zip4j:2.11.4",
+            "com.opencsv:opencsv:5.3",
+            "org.apache.poi:poi-ooxml:5.2.2",
+            "org.apache.poi:poi-ooxml-schemas:4.1.2",
+            "org.apache.poi:poi:5.2.2",
+            "org.assertj:assertj-core:3.19.0",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.junit.jupiter:junit-jupiter-params:$junitVersion")
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+tasks.withType(JavaCompile)
+        .configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
